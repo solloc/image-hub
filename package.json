@@ -1,0 +1,22 @@
+{
+  "name": "image-hub",
+  "version": "0.0.0",
+  "description": "media management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solloc/image-hub.git"
+  },
+  "author": "Matthias Maisch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solloc/image-hub/issues"
+  },
+  "homepage": "https://github.com/solloc/image-hub#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
