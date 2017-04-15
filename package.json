@@ -18,10 +18,21 @@
   },
   "homepage": "https://github.com/solloc/image-hub#readme",
   "dependencies": {
+    "@angular/common": "^4.0.2",
+    "@angular/compiler": "^4.0.2",
+    "@angular/core": "^4.0.2",
+    "@angular/platform-browser": "^4.0.2",
+    "@angular/platform-browser-dynamic": "^4.0.2",
+    "core-js": "^2.4.1",
     "express": "^4.15.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "rxjs": "^5.3.0",
+    "systemjs": "^0.20.12",
+    "zone.js": "^0.8.5"
   },
   "devDependencies": {
+    "@types/core-js": "^0.9.41",
+    "@types/express": "^4.0.35",
     "@types/node": "^7.0.12",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
