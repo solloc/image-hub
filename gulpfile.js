@@ -16,13 +16,13 @@ gulp.task('clean-client', function () {
 });
 
 gulp.task('move',['clean-client'], function () {
-    return gulp.src('app/src/client/*.*')
+    return gulp.src('src/client/*.*')
         .pipe(gulp.dest('dist/client'));
         // .pipe(livereload());
 });
 
 gulp.task('build',['clean-server'] , function () {
-    return gulp.src('app/src/**/*.ts')
+    return gulp.src('src/**/*.ts')
         .pipe(ts({
             // noImplicitAny: true,
             // out: 'index.js'
@@ -34,8 +34,8 @@ gulp.task('build',['clean-server'] , function () {
 });
 
 gulp.task('watch',['build','move'], function () {
-    gulp.watch('app/src/server/**/*.ts', ['build']);
-    gulp.watch('app/src/client/**/*.*', ['move']);
+    gulp.watch('src/server/**/*.ts', ['build']);
+    gulp.watch('src/client/**/*.*', ['move']);
 });
 
 gulp.task('serve',['watch'], function () {
