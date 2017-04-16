@@ -7,13 +7,13 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
-    "lib": ["es5", "dom"]
+    "lib": ["es6", "dom"]
   },
   "include": [
     "**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "typings"
+    "node_modules"
+//    "typings"
   ]
 }
