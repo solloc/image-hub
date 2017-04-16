@@ -16,7 +16,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "<h1>Hello {{name}}</h1>\n                <a class=\"btn btn-primary\" href=\"#\" role=\"button\">Link</a>\n    <p>...</p>"
+        template: "<h1>Hello {{name}}</h1>\n                <a class=\"btn btn-primary\" href=\"#\" role=\"button\">Link</a>\n    <p>...</p>\n    <file-upload></file-upload>\n    <p>...</p>"
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

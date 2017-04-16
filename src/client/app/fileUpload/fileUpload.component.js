@@ -7,19 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var app_component_1 = require("./app.component");
-var fileUpload_component_1 = require("./fileUpload/fileUpload.component");
-var AppModule = (function () {
-    function AppModule() {
+var FileUploadComponent = (function () {
+    function FileUploadComponent() {
     }
-    return AppModule;
+    return FileUploadComponent;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent, fileUpload_component_1.FileUploadComponent],
-        bootstrap: [app_component_1.AppComponent]
+FileUploadComponent = __decorate([
+    core_1.Component({
+        selector: 'file-upload',
+        template: "file upload works"
     })
-], AppModule);
-exports.AppModule = AppModule;
+], FileUploadComponent);
+exports.FileUploadComponent = FileUploadComponent;

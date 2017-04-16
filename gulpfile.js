@@ -119,6 +119,7 @@ gulp.task('build', function () {
 
 gulp.task('watch', function () {
     gulp.watch('src/**/*.ts', ['build']);
+    gulp.watch('src/**/*.scss', ['styles']);
 });
 
 // gulp.task('build-all', function () {
@@ -153,10 +154,10 @@ gulp.task('watch', function () {
 // });
 
 
-gulp.task('serve',['build','watch'], function () {
+gulp.task('serve',['build','styles','watch'], function () {
    nodemon({
        script: 'src/server/server.js',
-       watch: '*.*'
+       watch: 'src/**/*.*'
    })
 });
 
