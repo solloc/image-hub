@@ -44,7 +44,12 @@ router.get('/app*', function (req, res) {
     res.sendFile(returning);
 });
 
-router.get('/', function (req, res) {
+router.get('/favicon.ico', function (req, res) {
+    console.log('favicon: ' + req.originalUrl);
+    res.sendFile(path.resolve(process.cwd(),'dist/assets/favicon.ico'));
+});
+
+router.get('/*', function (req, res) {
     console.log('home: ' + req.originalUrl);
     res.sendFile(path.resolve(process.cwd(),'dist/client/index.html'));
 });

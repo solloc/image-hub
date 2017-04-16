@@ -118,7 +118,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('move', function () {
-   gulp.src('src/**/*.{js,html}')
+   gulp.src('src/**/*.{js,html,ico}')
        .pipe(gulp.dest('dist'));
 });
 
