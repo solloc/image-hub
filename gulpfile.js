@@ -4,7 +4,7 @@ var clean = require('gulp-clean');
 var nodemon = require('gulp-nodemon');
 // var livereload = require('gulp-livereload');
 
-// var runSequence = require('run-sequence');
+var runSequence = require('run-sequence');
 var del = require('del');
 // var watch = require('gulp-watch');
 var batch = require('gulp-batch');
@@ -28,11 +28,11 @@ var sass = require('gulp-sass');
 //         .pipe(clean());
 // });
 
-// gulp.task('clean', function () {
-//     // return gulp.src('dist/*')
-//     //     .pipe(clean());
-//     return del('dist');
-// });
+gulp.task('clean', function () {
+    // return gulp.src('dist/*')
+    //     .pipe(clean());
+    return del('dist');
+});
 
 // gulp.task('lib', function () {
 //    return gulp.src([
@@ -70,7 +70,7 @@ var sass = require('gulp-sass');
 gulp.task('styles', function () {
     return gulp.src('src/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('src'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('build', function () {
@@ -78,7 +78,7 @@ gulp.task('build', function () {
     return tsProject.src()
         .pipe(tsProject())
         .js
-        .pipe(gulp.dest('src'));
+        .pipe(gulp.dest('dist'));
     // return gulp.src('client/**/*.ts')
     //     .pipe(tsProject())
     //     .js
@@ -117,9 +117,15 @@ gulp.task('build', function () {
     // //     .js.pipe(gulp.dest("dist"));
 });
 
+gulp.task('move', function () {
+   gulp.src('src/**/*.{js,html}')
+       .pipe(gulp.dest('dist'));
+});
+
 gulp.task('watch', function () {
     gulp.watch('src/**/*.ts', ['build']);
     gulp.watch('src/**/*.scss', ['styles']);
+    gulp.watch('src/**/*.{js,html}', ['move']);
 });
 
 // gulp.task('build-all', function () {
@@ -142,24 +148,23 @@ gulp.task('watch', function () {
 //
 // });
 
-// gulp.task('build-all',['clean'],function (callback) {
-//    return runSequence(
-//        'lib',
-//        'move',
-//        'build',
-//        function (error) {
-//            callback(error);
-//        }
-//    );
-// });
+gulp.task('build-all',['clean'],function (callback) {
+   return runSequence(
+       'build',
+       'styles',
+       'move',
+       function (error) {
+           callback(error);
+       }
+   );
+});
 
 
-gulp.task('serve',['build','styles','watch'], function () {
+gulp.task('serve',['build-all','watch'], function () {
    nodemon({
-       script: 'src/server/server.js',
-       watch: 'src/**/*.*'
+       script: 'dist/server/server.js',
+       watch: 'dist/**/*.*'
    })
 });
 
-gulp.task('default', ['serve'], function () {
-});
+gulp.task('default', ['serve'], function () {});
