@@ -8,7 +8,7 @@ var nodemon = require('gulp-nodemon');
 var del = require('del');
 // var watch = require('gulp-watch');
 var batch = require('gulp-batch');
-
+var sass = require('gulp-sass');
 
 
 
@@ -66,14 +66,19 @@ var batch = require('gulp-batch');
 //     gulp.watch('src/client/**/*.{html,js}', ['move']);
 // })
 
+
+gulp.task('styles', function () {
+    return gulp.src('src/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('src'));
+});
+
 gulp.task('build', function () {
-
-
     var tsProject = ts.createProject('tsconfig.json');
     return tsProject.src()
         .pipe(tsProject())
         .js
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('src'));
     // return gulp.src('client/**/*.ts')
     //     .pipe(tsProject())
     //     .js
@@ -112,11 +117,8 @@ gulp.task('build', function () {
     // //     .js.pipe(gulp.dest("dist"));
 });
 
-
-
-
 gulp.task('watch', function () {
-    gulp.watch('*.ts', ['build']);
+    gulp.watch('src/**/*.ts', ['build']);
 });
 
 // gulp.task('build-all', function () {
@@ -153,7 +155,7 @@ gulp.task('watch', function () {
 
 gulp.task('serve',['build','watch'], function () {
    nodemon({
-       script: 'server.js',
+       script: 'src/server/server.js',
        watch: '*.*'
    })
 });

@@ -33,20 +33,20 @@ app.use(router);
 // });
 
 router.get('/node_modules*', function (req, res) {
-    let returning = path.join(__dirname, req.originalUrl);
+    let returning = path.join(process.cwd(), req.originalUrl);
    // console.log('module: ' + req.originalUrl + ' ==> ' + returning);
    res.sendFile(returning);
 });
 
 router.get('/app*', function (req, res) {
-    let returning = path.join(__dirname, 'src/client', req.originalUrl);
+    let returning = path.join(process.cwd(), 'src/client', req.originalUrl);
     console.log('app: ' + req.originalUrl + ' ==> ' + returning);
     res.sendFile(returning);
 });
 
 router.get('/', function (req, res) {
     console.log('home: ' + req.originalUrl);
-    res.sendFile(path.resolve(__dirname,'src/client/index.html'));
+    res.sendFile(path.resolve(process.cwd(),'src/client/index.html'));
 });
 
 router.get('*', function (req, res) {
