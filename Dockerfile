@@ -1,7 +1,10 @@
-FROM node:latest
+FROM node:alpine
 
 # prepare a user which runs everything locally! - required in child images!
-RUN useradd --user-group --create-home --shell /bin/false app
+#RUN adduser -h=/home/app --s /bin/false app
+
+RUN addgroup app
+RUN adduser -G app -s /bin/sh -D app
 
 ENV HOME=/home/app
 WORKDIR $HOME
