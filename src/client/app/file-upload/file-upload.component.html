@@ -1,1 +1,9 @@
-<h1>file-upload</h1> works
+<h1>file-upload</h1>
+{{diagnostic}}
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="inputFile">File Input:</label>
+        <input type="file" class="form-control-file" id="inputFile" (change)="onFileChange($event)">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

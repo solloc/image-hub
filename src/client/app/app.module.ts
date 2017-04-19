@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes = [
     // { path: 'welcome', component: WelcomeComponent },
@@ -14,7 +16,9 @@ const appRoutes: Routes = [
 @NgModule({
     imports: [
         BrowserModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        FormsModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,

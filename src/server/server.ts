@@ -9,6 +9,11 @@ let router = express.Router();
 // app.use('/app', express.static(path.resolve(__dirname, '../client/app')));
 
 app.enable('strict routing');
+
+
+
+
+
 app.use(router);
 
 
@@ -32,6 +37,8 @@ app.use(router);
 //     res.sendFile(path.resolve(__dirname, '../client' + req.originalUrl));
 // });
 
+
+
 router.get('/node_modules*', function (req, res) {
     let returning = path.join(process.cwd(), req.originalUrl);
    // console.log('module: ' + req.originalUrl + ' ==> ' + returning);
@@ -49,15 +56,39 @@ router.get('/favicon.ico', function (req, res) {
     res.sendFile(path.resolve(process.cwd(),'dist/assets/favicon.ico'));
 });
 
+router.get('/api/file', function (req, res) {
+    console.log('get api');
+   res.send('result of /api/file');
+});
+
+router.post('/api/file', function (req, res) {
+    console.log('file uploaded');
+    res.sendStatus(500);
+    // res.sendStatus(404);
+});
+
 router.get('/*', function (req, res) {
     console.log('home: ' + req.originalUrl);
     res.sendFile(path.resolve(process.cwd(),'dist/client/index.html'));
 });
 
-router.get('*', function (req, res) {
+router.get('/*', function (req, res) {
     console.log('fallback: ' + req.originalUrl);
 });
 
+router.post('/*', function (req, res) {
+    console.log('fallback post: ' + req.originalUrl);
+});
+
+router.all('/*', function (req, res) {
+    console.log('most generic fallback');
+});
+
+
+app.all('*', function (req, res) {
+    console.log('does any of those fallbacks work?');
+    res.send();
+});
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000')
