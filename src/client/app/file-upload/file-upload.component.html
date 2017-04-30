@@ -3,7 +3,7 @@
 <form (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="inputFile">File Input:</label>
-        <input type="file" class="form-control-file" id="inputFile" (change)="onFileChange($event)">
+        <input type="file" class="form-control-file" id="inputFile" (change)="onFileChange($event)" multiple="multiple">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

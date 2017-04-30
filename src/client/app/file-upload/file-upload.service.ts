@@ -40,7 +40,12 @@ export class FileUploadService {
         let options = new RequestOptions({ headers: headers });
 
         let formData = new FormData();
-        formData.append('filesToUpload', filesToUpload[0]);
+
+        for (let _i = 0; _i < filesToUpload.length; _i++) {
+            formData.append('filesToUpload', filesToUpload.item(_i));
+        }
+
+        // formData.append('filesToUpload', filesToUpload[0]);
 
 
         return this.http.post('api/file', formData ,options)
