@@ -11,7 +11,7 @@ export class FileUploadService {
 
     private handleError (error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
-        console.log('error caught');
+        // console.log('error caught');
         let errMsg: string;
         if (error instanceof Response) {
             const body = error.json() || '';
@@ -31,15 +31,20 @@ export class FileUploadService {
     }
 
 
-    uploadFile(): Observable<String> {
+    uploadFile(filesToUpload: FileList): Observable<String> {
         console.log('post request sent');
 
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers();
+        // let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.get('api/file', options)
-            .map(this.extractData)
+        let formData = new FormData();
+        formData.append('filesToUpload', filesToUpload[0]);
+
+
+        return this.http.post('api/file', formData ,options)
+            // .map(this.extractData)
             .catch(this.handleError);
 
         // let

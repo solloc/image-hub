@@ -24,9 +24,7 @@ export class FileUploadComponent {
     onSubmit(){
         console.log('form submitted');
         // this.http.post('/api/file', 'blaaa');
-        this.fileUploadService.uploadFile()
-            .subscribe(
-                something => this.retvalue
-            );
+        this.fileUploadService.uploadFile(this.filesToUpload)
+            .subscribe();
     }
 }
