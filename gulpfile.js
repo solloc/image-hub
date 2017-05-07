@@ -159,12 +159,26 @@ gulp.task('build-all',['clean'],function (callback) {
    );
 });
 
+gulp.task('build-watch',['build-all','watch'], function () {
+});
 
 gulp.task('serve',['build-all','watch'], function () {
    nodemon({
        script: 'dist/server/server.js',
+       // debug: true,
+       exec: 'node --debug',
+       // emv: {
+       //     'NODE_ENV': 'development'
+       // },
        watch: 'dist/**/*.*'
    })
 });
+
+
+// script: 'server.js',
+//     ext: 'js html',
+//     exec: 'node --debug',
+//     env: {
+//     'NODE_ENV': 'development'
 
 gulp.task('default', ['serve'], function () {});

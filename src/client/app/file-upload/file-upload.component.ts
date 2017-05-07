@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { FileUploadService } from './file-upload.service';
+import {stat} from "fs";
 
 @Component({
     templateUrl: './app/file-upload/file-upload.component.html',
@@ -23,8 +24,18 @@ export class FileUploadComponent {
 
     onSubmit(){
         console.log('form submitted');
-        // this.http.post('/api/file', 'blaaa');
+
+        let observer = {
+            next: x => console.log('Observer got a next value: ' + x),
+            error: err => console.error('Observer got an error: ' + err),
+            complete: () => console.log('Observer got a complete notification')
+        };
+
         this.fileUploadService.uploadFile(this.filesToUpload)
-            .subscribe();
+            .subscribe(observer);
+    }
+
+    setUploadStatus(status:String) {
+        this.retvalue = status;
     }
 }
