@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
 import { FileUploadService } from './file-upload.service';
-import {stat} from "fs";
 
 @Component({
     templateUrl: './app/file-upload/file-upload.component.html',

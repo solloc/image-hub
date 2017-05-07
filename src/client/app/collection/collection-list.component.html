@@ -1,0 +1,25 @@
+<h1>Collection list</h1>
+<div class="container">
+    <form (ngSubmit)="addCollection()">
+        <div class="form-group">
+            <label for="collectionName">Name:</label>
+            <input type="text" id="collectionName" [(ngModel)]="newCollection.name" name="name">
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+<div class="container">
+    <table class="table-responsive">
+        <thead>
+        <th>ID</th>
+        <th>name</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let collection of collections">
+            <td>{{collection.id}}</td>
+            <td>{{collection.name}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
