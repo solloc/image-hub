@@ -1,3 +1,14 @@
 $brand-primary: red;
 
+
+
+.container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.main-content {
+  margin-top: 5rem;
+}
+
 @import "node_modules/bootstrap/scss/bootstrap.scss";
