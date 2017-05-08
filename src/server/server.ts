@@ -4,9 +4,21 @@ import * as uuid from 'uuid/v4';
 import * as os from 'os';
 import * as fs from 'fs';
 import * as multer from 'multer';
+import { MongoClient } from 'mongodb';
 
 let app = express();
 let router = express.Router();
+let mongo = null;
+
+MongoClient.connect("mongodb://192.168.99.100:27017/image-hub", function (err, db) {
+    // console.log('connecting to mongodb');
+    if(!err) {
+        console.log('connected to mongodb');
+        mongo = db;
+    } else {
+        console.error(err);
+    }
+});
 
 // let upload = multer();
 
@@ -65,6 +77,23 @@ router.post('/api/file', function (req, res) {
     });
 
     res.send('file uploaded successfully.');
+});
+
+router.get('/api/collection', function (req, res) {
+    // console.log('Receiving collections');
+    mongo.collection('collection').find().toArray(function (err, result) {
+        if(err) {
+            console.log(err);
+            res.sendStatus(500);
+        } else {
+            // console.log(result);
+            res.send(result);
+        }
+        // res.send(result);
+    });
+
+
+    // res.sendStatus(200);
 });
 
 router.get('/*', function (req, res) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CollectionService } from './collection.service';
-import { Collection } from './collection';
+import {Collection, ICollection} from './collection';
 
 @Component({
     templateUrl: './app/collection/collection-list.component.html',
@@ -8,13 +8,18 @@ import { Collection } from './collection';
 })
 export class CollectionListComponent implements OnInit {
 
-    public collections;
+    public collections: ICollection[];
     public newCollection = new Collection('','');
 
     constructor(private collectionService:CollectionService){}
 
     getCollections() {
-        this.collections = this.collectionService.getCollections();
+        // this.collections = this.collectionService.getCollections().subscribe({
+        this.collectionService.getCollections().subscribe({
+            next: value => this.collections = value,
+            error: err => console.error(err),
+            complete: () => console.log('done fetching collections')
+        });
     }
 
     ngOnInit(): void {
@@ -24,8 +29,8 @@ export class CollectionListComponent implements OnInit {
     }
 
     addCollection() {
-        this.collectionService.addCollection(this.newCollection);
-        this.collections = this.collectionService.getCollections();
+        // this.collectionService.addCollection(this.newCollection);
+        this.collectionService.getCollections();
         this.newCollection = new Collection('','');
     }
 }

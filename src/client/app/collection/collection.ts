@@ -1,14 +1,14 @@
 export interface ICollection {
-    id:string;
+    _id:string;
     name:string;
 }
 
 export class Collection implements ICollection {
-    id: string;
+    _id: string;
     name: string;
 
-    constructor(id:string, name:string){
-        this.id = id;
+    constructor(_id:string, name:string){
+        this._id = _id;
         this.name = name;
     }
 }
