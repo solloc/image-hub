@@ -29,8 +29,14 @@ export class CollectionListComponent implements OnInit {
     }
 
     addCollection() {
-        // this.collectionService.addCollection(this.newCollection);
-        this.collectionService.getCollections();
-        this.newCollection = new Collection('','');
+        let newCol = {
+            'name': this.newCollection.name
+        };
+        this.collectionService.addCollection(newCol).subscribe({
+            complete: () => {
+                this.newCollection = new Collection('','');
+                this.getCollections();
+            }
+        });
     }
 }

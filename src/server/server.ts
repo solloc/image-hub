@@ -5,10 +5,13 @@ import * as os from 'os';
 import * as fs from 'fs';
 import * as multer from 'multer';
 import { MongoClient } from 'mongodb';
+import * as bodyParser from 'body-parser';
 
 let app = express();
 let router = express.Router();
 let mongo = null;
+
+app.use(bodyParser.json());
 
 MongoClient.connect("mongodb://192.168.99.100:27017/image-hub", function (err, db) {
     // console.log('connecting to mongodb');
@@ -19,10 +22,6 @@ MongoClient.connect("mongodb://192.168.99.100:27017/image-hub", function (err, d
         console.error(err);
     }
 });
-
-// let upload = multer();
-
-
 
 let storage = multer.diskStorage({
    destination: function (req, file, cb) {
@@ -41,10 +40,6 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage }).array('filesToUpload');
 
 app.enable('strict routing');
-
-
-
-
 
 app.use(router);
 
@@ -80,7 +75,6 @@ router.post('/api/file', function (req, res) {
 });
 
 router.get('/api/collection', function (req, res) {
-    // console.log('Receiving collections');
     mongo.collection('collection').find().toArray(function (err, result) {
         if(err) {
             console.log(err);
@@ -89,11 +83,19 @@ router.get('/api/collection', function (req, res) {
             // console.log(result);
             res.send(result);
         }
-        // res.send(result);
     });
+});
 
-
-    // res.sendStatus(200);
+router.post('/api/collection', function (req, res) {
+    console.log('New collection: ' + JSON.stringify(req.body));
+    mongo.collection('collection').save(req.body, function (err, record) {
+        if(!err) {
+            console.log('success: ' + record);
+        } else {
+            console.error('error: ' + err);
+        }
+    });
+    res.sendStatus(200);
 });
 
 router.get('/*', function (req, res) {
