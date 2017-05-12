@@ -11,14 +11,16 @@
 <div class="container">
     <table class="table-responsive">
         <thead>
-        <th>ID</th>
-        <th>name</th>
+            <th>ID</th>
+            <th>name</th>
+            <th>delete</th>
         </thead>
         <tbody>
-        <tr *ngFor="let collection of collections">
-            <td>{{collection._id}}</td>
-            <td>{{collection.name}}</td>
-        </tr>
+            <tr *ngFor="let collection of collections">
+                <td><span style="color:blue">{{collection._id}}</span></td>
+                <td>{{collection.name}}</td>
+                <td><span style="color:red; cursor: pointer" (click)="deleteCollection(collection._id)">X</span></td>
+            </tr>
         </tbody>
     </table>
 </div>

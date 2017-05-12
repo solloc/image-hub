@@ -20,4 +20,8 @@ export class CollectionService {
             headers: headers
         });
     }
+
+    deleteCollection(id:string) {
+        return this.http.delete('/api/collection/' + id);
+    }
 }

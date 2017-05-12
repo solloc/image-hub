@@ -4,7 +4,7 @@ import * as uuid from 'uuid/v4';
 import * as os from 'os';
 import * as fs from 'fs';
 import * as multer from 'multer';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import * as bodyParser from 'body-parser';
 
 let app = express();
@@ -93,6 +93,18 @@ router.post('/api/collection', function (req, res) {
             console.log('success: ' + record);
         } else {
             console.error('error: ' + err);
+        }
+    });
+    res.sendStatus(200);
+});
+
+router.delete('/api/collection/:id', function (req, res) {
+    console.log('Deleting item ' + req.params.id);
+    mongo.collection('collection').remove({_id: new ObjectID(req.params.id)}, function (err, result) {
+        if(!err){
+            console.log('success: ' + result);
+        } else {
+            console.error(err);
         }
     });
     res.sendStatus(200);

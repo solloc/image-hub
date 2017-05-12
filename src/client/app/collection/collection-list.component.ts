@@ -39,4 +39,13 @@ export class CollectionListComponent implements OnInit {
             }
         });
     }
+
+    deleteCollection(id:string) {
+        this.collectionService.deleteCollection(id).subscribe({
+            complete: () => {
+                console.log('collection ' + id + ' deleted');
+                this.getCollections();
+            }
+        });
+    }
 }
