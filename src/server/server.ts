@@ -11,10 +11,11 @@ let app = express();
 let router = express.Router();
 let mongo = null;
 
+// console.log(process.env);
+
 app.use(bodyParser.json());
 
-MongoClient.connect("mongodb://192.168.99.100:27017/image-hub", function (err, db) {
-    // console.log('connecting to mongodb');
+MongoClient.connect('mongodb://' + process.env.DOCKER_HOST + ':' + process.env.DOCKER_PORT + '/image-hub', function (err, db) {
     if(!err) {
         console.log('connected to mongodb');
         mongo = db;

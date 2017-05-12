@@ -170,10 +170,15 @@ gulp.task('serve',['build-all','watch'], function () {
        // emv: {
        //     'NODE_ENV': 'development'
        // },
-       watch: 'dist/**/*.*'
+       watch: 'dist/**/*.*',
+       env: {
+           'DOCKER_HOST': '192.168.99.100',
+           'DOCKER_PORT': '27017'
+       }
+
    })
 });
-
+// 192.168.99.100:27017
 
 // script: 'server.js',
 //     ext: 'js html',
