@@ -172,8 +172,8 @@ gulp.task('serve',['build-all','watch'], function () {
        // },
        watch: 'dist/**/*.*',
        env: {
-           'DOCKER_HOST': '192.168.99.100',
-           'DOCKER_PORT': '27017'
+           'MONGODB_DOCKER_HOST': '192.168.99.100',
+           'MONGODB_DOCKER_PORT': '27017'
        }
 
    })

@@ -15,7 +15,7 @@ let mongo = null;
 
 app.use(bodyParser.json());
 
-MongoClient.connect('mongodb://' + process.env.DOCKER_HOST + ':' + process.env.DOCKER_PORT + '/image-hub', function (err, db) {
+MongoClient.connect('mongodb://' + process.env.MONGODB_DOCKER_HOST + ':' + process.env.MONGODB_DOCKER_PORT + '/image-hub', function (err, db) {
     if(!err) {
         console.log('connected to mongodb');
         mongo = db;
