@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import * as multer from 'multer';
 import { MongoClient, ObjectID } from 'mongodb';
 import * as bodyParser from 'body-parser';
+import * as url from 'url';
 
 let app = express();
 let router = express.Router();
@@ -46,7 +47,8 @@ app.use(router);
 
 
 router.get('/node_modules*', function (req, res) {
-    let returning = path.join(process.cwd(), req.originalUrl);
+    // let returning = path.join(process.cwd(), req.originalUrl);
+    let returning = path.join(process.cwd(), url.parse(req.url).pathname);
    // console.log('module: ' + req.originalUrl + ' ==> ' + returning);
    res.sendFile(returning);
 });

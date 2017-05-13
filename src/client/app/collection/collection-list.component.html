@@ -19,7 +19,7 @@
             <tr *ngFor="let collection of collections">
                 <td><span style="color:blue">{{collection._id}}</span></td>
                 <td>{{collection.name}}</td>
-                <td><span style="color:red; cursor: pointer" (click)="deleteCollection(collection._id)">X</span></td>
+                <td><span style="color:red; cursor: pointer" (click)="deleteCollection(collection._id)"><i class="fa fa-trash"></i></span></td>
             </tr>
         </tbody>
     </table>
