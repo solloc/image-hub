@@ -165,25 +165,16 @@ gulp.task('build-watch',['build-all','watch'], function () {
 gulp.task('serve',['build-all','watch'], function () {
    nodemon({
        script: 'dist/server/server.js',
-       // debug: true,
        exec: 'node --debug',
-       // emv: {
-       //     'NODE_ENV': 'development'
-       // },
+       args: ['--configFile=config.json'],
        watch: 'dist/**/*.*',
        env: {
-           'MONGODB_DOCKER_HOST': '192.168.99.100',
-           'MONGODB_DOCKER_PORT': '27017'
+           // 'MONGODB_DOCKER_HOST': '192.168.99.100',
+           // 'MONGODB_DOCKER_PORT': '27017',
+           'NODE_ENV': 'development'
        }
 
    })
 });
-// 192.168.99.100:27017
-
-// script: 'server.js',
-//     ext: 'js html',
-//     exec: 'node --debug',
-//     env: {
-//     'NODE_ENV': 'development'
 
 gulp.task('default', ['serve'], function () {});

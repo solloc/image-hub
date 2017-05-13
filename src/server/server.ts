@@ -7,16 +7,17 @@ import * as multer from 'multer';
 import { MongoClient, ObjectID } from 'mongodb';
 import * as bodyParser from 'body-parser';
 import * as url from 'url';
+import { Config } from './config';
+
+let config = new Config();
 
 let app = express();
 let router = express.Router();
 let mongo = null;
 
-// console.log(process.env);
-
 app.use(bodyParser.json());
 
-MongoClient.connect('mongodb://' + process.env.MONGODB_DOCKER_HOST + ':' + process.env.MONGODB_DOCKER_PORT + '/image-hub', function (err, db) {
+MongoClient.connect('mongodb://' + config.mongoHost + ':' + config.mongoPort + '/image-hub', function (err, db) {
     if(!err) {
         console.log('connected to mongodb');
         mongo = db;
